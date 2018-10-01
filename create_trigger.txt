@@ -1,0 +1,51 @@
+# To create a new trigger, we have to use the "CREATE TRIGGER" statement
+    - Ex:
+        CREATE TRIGGER trigger_name trigger_time trigger_event
+         ON table_name
+         FOR EACH ROW
+         BEGIN
+         ...
+         END;
+
+         - trigger_time: can be BEFORE or AFTER.
+         - trigger_event: can be INSERT, UPDATE or DELETE.
+         - You place the SQL statement between BEGIN and END block. These is where you define the logic for the trigger.
+
+# Lets do an example where the trigger runs before the update happens on employees table and logs the changes happens to employees table.  :
+    - There is already one table called "employees"
+    - create a new table named "employees_audit" to keep the changes of the employee table:-
+        CREATE TABLE employees_audit (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            employeeNumber INT NOT NULL,
+            lastname VARCHAR(50) NOT NULL,
+            changedat DATETIME DEFAULT NULL,
+            action VARCHAR(50) DEFAULT NULL
+        );
+
+    - create BEFORE UPDATE trigger that is invoked before the change is made to the employees table:-
+        - DELIMITER $$ //  "$$" this is custom delimiter used in function, stored procedure, triggers. In the end you will see we changed it back to ";". https://stackoverflow.com/questions/10259504/delimiters-in-mysql
+          CREATE TRIGGER before_employee_update BEFORE UPDATE
+            ON employees
+            FOR EACH ROW
+          BEGIN
+            INSERT INTO employees_audit
+            SET action = 'update'
+                employeeNumber = OLD.employeeNumber, // OLD keyword is used. Description is below about how to use it.
+                lastname = OLD.lastname,
+                changedat = NOW();
+          END$$
+          DELIMITER ;
+
+# To view all the trigger in db use "SHOW TRIGGERS;" statement.
+# Points to remember:
+    - We used the OLD keyword to access employeeNumber and lastname column of the row affected by the trigger.
+    - Notice, if a trigger defined for INSERT, you can use NEW keyword only. you can not use OLD keyword.
+    - if a trigger is defined for DELETE, there is no new row so you can use the OLD keyword only
+    - if a trigger is defined for UPDATE, OLD refers to the row before updated and NEW refers to the row after it is updated.
+
+# update employees and check the employees_audit table:
+    - UPDATE employees
+      SET
+        lastName = "Phan"
+      WHERE
+        employeeNumber = 1056;

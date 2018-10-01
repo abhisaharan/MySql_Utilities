@@ -1,0 +1,14 @@
+# this will work on MySQL version 5.7.2+. Older version will not support.
+
+# In case of multiple triggers for the same event in a table, MySQL will invoke the triggers in the order that they were created.
+
+# To change the invoke order of triggers, you need to specify FOLLOWS or PROCEEDS after the FOR EACH ROW clause.
+    - Ex:
+        DELIMITER $$
+        CREATE TRIGGER  trigger_name
+        [BEFORE|AFTER] [INSERT|UPDATE|DELETE] ON table_name
+        FOR EACH ROW [FOLLOWS|PRECEDES] existing_trigger_name
+        BEGIN
+        …
+        END$$
+        DELIMITER ;

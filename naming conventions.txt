@@ -1,0 +1,8 @@
+# You must use a unique name for each trigger associated with a table. However, you can have the same trigger name defined for different tables though it is a good practice.
+
+- you should use the following naming convention:
+        - (BEFORE | AFTER)_tableName_(INSERT| UPDATE | DELETE)
+            or
+        - tablename_(BEFORE | AFTER)_(INSERT| UPDATE | DELETE)
+
+            - Ex: For example, "before_order_update" is a trigger invoked before a row in the order table is updated or "order_before_update".

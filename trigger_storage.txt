@@ -1,0 +1,6 @@
+ # MySql triggers are stored in data directory eg /data/classicmodels/ with the files named tablename.TRG and triggername.TRN
+    - tablename.TRG file maps the trigger to the corresponding table.
+    - triggername.TRN file contains the trigger definition.
+
+ # we can backup the MySql triggers by copying the trigger files to the backup folder or we can use the mysql dump tool.
+
