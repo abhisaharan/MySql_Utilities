@@ -1,0 +1,19 @@
+# MySQl trigger
+- trigger is a special type of stored procedure. The difference between stored procedure and trigger is that a trigger is called automatically when data modification event occurs. Where as a stored procedure must be called explicitly.
+
+- Adv of trigger: protect integrity of data, catch errors, audit changes in the db tables.
+- disadv: executed invisible from client applications, it is difficult to figure out what happens in db layer. Also it may increase the overhead of the db server.
+
+# Implementation:
+    - A trigger is defined to be invoked either before or after the data is changed by INSERT, UPDATE, or DELETE.
+    - Before MySql version 5.7.2, you can to define max six triggers for each table.
+            - BEFORE INSERT, AFTER INSERT, BEFORE UPDATE, AFTER UPDATE, BEFORE DELETE, AFTER DELETE.
+
+    - When you use a statement that does not user INSERT, DELETE or UPDATE statement to change data in a table, the trigger associated with the table are not invoked. For example the TRUNCATE statement removes all the data of a table but does not invoke the trigger associated with that table.
+
+    - There are some statements that use the INSERT statement behind the scenes such as REPLACE statement or LOAD DATA statement. If you use these statements, the corresponding triggers associated with the table are invoked.
+
+   - You must use a unique name for each trigger associated with a table. However, you can have the same trigger name defined for different tables though it is a good practice.
+
+
+
