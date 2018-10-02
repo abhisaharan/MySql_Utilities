@@ -1,0 +1,27 @@
+# MySQL event is a task that runs on a predefined schedule. It is also called "temporal trigger" because it is triggered by time, not by table update like a trigger. It is similar to cron in UNIX or a task scheduler in Windows.
+
+# use cases: Optimizing db tables, cleaning up logs, archiving data, or generate complex reports during off-peak time.
+
+# MySQL uses a special thread called event schedule thread to execute all the scheduled events. You can see the status of event thread by using following command:
+    - SHOW PROCESSLIST;
+    - by default, the event scheduler thread is not enabled.
+        To enable it
+        - SET GLOBAL event_scheduler = ON;
+        To disable it
+        - SET GLOBAL event_scheduler = OFF;
+
+# Creating new MySQL events:
+    - creating event is similar to triggers or stored procedures. It is an db object that contains sql statements.
+    - stored procedures is only executed when it is invoked directly; a trigger is executed when an event associated with a table such as an insert, update or delete event occurs while an event can be executed at once or more regular intervals.
+
+    - Ex:
+        CREATE EVENT [IF NOT EXIST]  event_name // name must be unique in db
+        ON SCHEDULE schedule
+        DO
+        event_body // sql body(compound sql must be wrapped in BEGIN END), also stored procedure can be called here.
+
+        - after ON SCHEDULE: If the event is a one-time event, you use the syntax:AT timestamp [+ INTERVAL] or if it's recurring then you use the EVERY clause:EVERY interval STARTS timestamp [+INTERVAL] ENDS timestamp [+INTERVAL]
+
+
+
+
