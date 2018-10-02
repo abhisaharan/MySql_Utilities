@@ -1,0 +1,10 @@
+# to change existing event:
+    - ALTER EVENT event_name
+      ON SCHEDULE schedule
+      ON COMPLETION [NOT] PRESERVE
+      RENAME TO new_event_name
+      ENABLE | DISABLE
+      DO
+        event_body
+
+    - if try to modify non-existent event it will raise error.
