@@ -1,0 +1,34 @@
+# "Modifying trigger"super important in the end****
+
+# you can see the definition of trigger in the data folder, which contains trigger definition file. On mac
+    - /usr/local/mysql/data/database_name/table_name.trg(table_name.trg is supposed to be there, but in my case it wasn't. Have to work on it.)
+    - Another way to see the trigger is by querying. This allows to view both content of the trigger and its metadata(associated table name and definer).
+        Ex: SELECT *
+            FROM
+                information_schema.triggers
+            WHERE
+                trigger_schema = 'database_name'
+                    AND trigger_name = 'trigger_name';
+    - to find the trigger associated with a particular table, you use the following query:
+        SELECT *
+        FROM
+            information_schema.triggers
+        WHERE
+            trigger_schema = 'database_name'
+                AND event_object_table = 'table_name';
+
+# MySQL SHOW TRIGGERS statement:
+    - SHOW TRIGGERS [FROM|IN] database_name
+      [LIKE expr | WHERE expr];
+    - SHOW TRIGGERS; // to view all the triggers in db
+        or
+      SHOW TRIGGERS FROM db_name
+    - from specific table
+        - SHOW TRIGGERS FROM db_name
+          WHERE `table` = 'table_name';  // Notice that we use backquote (`) to wrap the table column because table is a reserved keyword in MySQL.
+
+# Removing a trigger:
+    - DROP TRIGGER table_name.trigger_name;
+
+# Modifying a trigger:
+    - to modify a trigger, you have delete it first and recreate it with the new code. There is no such ALTER TRIGGER statement available in MySQL. Therefore, you can not modify trigger like other db objects such as tables, views and stored procedures.

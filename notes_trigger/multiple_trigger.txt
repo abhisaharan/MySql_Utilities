@@ -17,7 +17,7 @@
     - http://www.mysqltutorial.org/mysql-triggers/create-multiple-triggers-for-the-same-trigger-event-and-action-time/
 
 # Information On Triggers Order:
-    - SHOW TRIGGERS FROM schema_name; // it will not show the order that trigger activatefor the same event and action.
+    - SHOW TRIGGERS FROM schema_name; // it will not show the order that trigger activate for the same event and action.
     - To find order of trigger activation:
         SELECT
             trigger_name, action_order
