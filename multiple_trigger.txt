@@ -12,3 +12,19 @@
         …
         END$$
         DELIMITER ;
+
+# MySql multiple triggers example:
+    - http://www.mysqltutorial.org/mysql-triggers/create-multiple-triggers-for-the-same-trigger-event-and-action-time/
+
+# Information On Triggers Order:
+    - SHOW TRIGGERS FROM schema_name; // it will not show the order that trigger activatefor the same event and action.
+    - To find order of trigger activation:
+        SELECT
+            trigger_name, action_order
+        FROM
+            information_schema.triggers
+        WHERE
+            trigger_schema = 'schema_name'
+        ORDER BY event_object_table ,
+                 action_timing ,
+                 event_manipulation
