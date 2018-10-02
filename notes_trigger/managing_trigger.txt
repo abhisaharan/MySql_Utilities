@@ -31,4 +31,4 @@
     - DROP TRIGGER table_name.trigger_name;
 
 # Modifying a trigger:
-    - to modify a trigger, you have delete it first and recreate it with the new code. There is no such ALTER TRIGGER statement available in MySQL. Therefore, you can not modify trigger like other db objects such as tables, views and stored procedures.
+    - to modify a trigger, you have delete it first and recreate it with the new code. There is no such ALTER TRIGGER statement available in MySQL. Therefore, you can not modify trigger like other db objects such as tables, views and stored procedures
