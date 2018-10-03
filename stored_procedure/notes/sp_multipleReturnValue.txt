@@ -1,0 +1,1 @@
+# to develop stored programs that return multiple values, you need to use stored with INOUT or OUT parameters.
