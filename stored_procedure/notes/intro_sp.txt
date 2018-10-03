@@ -1,0 +1,22 @@
+# a stored procedure is a segment of declarative sql statements. A stored procedure that call itself is known as a recursive stored procedure. Mysql doesn't support it very well.
+
+- adv of sp:
+    - Once created, stored procedures are compiled and stored in the database. After compiling a stored procedure, MySQL puts it into a cache and maintains its own stored procedure cache for every single connection. If an application uses a stored procedure multiple times in a single connection, the compiled version is used, otherwise, the stored procedure works like a query.
+    - stored procedures help increase the performance of the applications.
+
+- diadv of sp:
+    - If you use many stored procedures, the memory usage of every connection that is using those stored procedures will increase substantially. The CPU usage will increase.
+
+# creating MySQL stored procedure:
+    - The GetAllProducts()  stored procedure selects all products from the products  table. we put "()" after the name of the stored procedure.
+        DELIMITER //
+         CREATE PROCEDURE GetAllProducts()
+           BEGIN
+           SELECT *  FROM products;
+           END //
+         DELIMITER ;
+
+         - The first command is DELIMITER // , which is not related to the stored procedure syntax. The DELIMITER statement changes the standard delimiter which is semicolon ( ; ) to another. In this case, the delimiter is changed from the semicolon( ; ) to double-slashes //. Why do we have to change the delimiter? Because we want to pass the stored procedure to the server as a whole rather than letting mysql tool interpret each statement at a time.  Following the END keyword, we use the delimiter //  to indicate the end of the stored procedure. The last command ( DELIMITER; ) changes the delimiter back to the semicolon (;).
+
+# calling a stored procedure:
+    - CALL stored_procedure_name(); Ex: CALL GetAllProducts();

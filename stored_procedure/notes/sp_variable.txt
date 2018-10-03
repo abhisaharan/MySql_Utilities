@@ -1,0 +1,21 @@
+# To declare a variable use the DECLARE statement.
+    - DECLARE variable_name datatype(size) DEFAULT default_value;
+        - Ex: DECLARE total_sale INT DEFAULT 0;
+                or
+              DECLARE x, y INT DEFAULT 0; // 2 variable created together with same data type.
+        - initial value of variable is NULL.
+# To assign variable use SET:
+    DECLARE total_count INT DEFAULT 0;
+    SET total_count = 10;
+
+# SELECT INTO: assign the result of a query, which returns a scalar value, to a variable
+    - DECLARE total_products INT DEFAULT 0;
+      SELECT
+         COUNT(*) INTO total_products   // assign the total_products  variable the number of products that we selected from the products
+      FROM
+         products;
+
+# Variable scope:
+    - If you declare a variable inside a stored procedure, it will be out of scope when the END statement of stored procedure reaches.
+    - If you declare a variable inside BEGIN END  block, it will be out of scope if the END is reached.
+    - A variable whose name begins with the @ sign is a session variable. It is available and accessible until the session ends.
