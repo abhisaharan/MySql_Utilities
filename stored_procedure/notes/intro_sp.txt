@@ -29,4 +29,3 @@
 
     - Displaying stored procedure’s source code
         - SHOW CREATE PROCEDURE stored_procedure_name
-
