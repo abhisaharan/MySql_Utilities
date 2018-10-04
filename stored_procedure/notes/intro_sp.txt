@@ -20,3 +20,13 @@
 
 # calling a stored procedure:
     - CALL stored_procedure_name(); Ex: CALL GetAllProducts();
+
+# Listing stored procedures in a MySQL db:
+    - Displaying characteristics of stored procedures
+        - SHOW PROCEDURE STATUS [LIKE 'pattern' | WHERE expr];  // only SHOW PROCEDURE STATUS to list all stored procedures.
+        - SHOW PROCEDURE STATUS WHERE db = 'classicmodels';
+        - SHOW PROCEDURE STATUS WHERE name LIKE '%product%'
+
+    - Displaying stored procedure’s source code
+        - SHOW CREATE PROCEDURE stored_procedure_name
+
